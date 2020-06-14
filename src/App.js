@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import {BrowserRouter as Router, Route, Switch, Redirect, Prompt} from "react-router-dom"
+import Navbar from "./Navbar"
+import Home from "./Home"
+import Items from "./Items"
+import About from "./About"
+import Item from "./Item"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const DefaultRoute = () => {
+    return <h1>ERROR 404</h1>
 }
 
-export default App;
+const Valid = () => {
+    const validity = false
+    
+    if(validity) return <h1>Hello valid user!</h1>
+    return <Redirect to="/error" />
+}
+
+const App = () => {
+    const formNotFilled = true
+    return (
+        <Router>
+            <div>
+                <Navbar />
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Redirect from="/home" to="/" />
+                    <Route path="/items" exact component={Items} />
+                    {/* <Prompt when={formNotFilled} message="Are u sure u wanna leave?" /> */}
+                    <Route path="/about" component={About} />
+                    <Route path="/items/:id" component={Item} />
+                    <Route path="/valid" component={Valid} />
+                    <Route component={DefaultRoute} />
+                    
+                </Switch>
+                
+            </div>
+            
+        </Router>
+    )
+}
+
+export default App

@@ -1,0 +1,18 @@
+.card {
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 4px;
+    padding: 20px;
+    background-color: white;
+    margin: 10px;
+}
+
+.card:hover{
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    transition: 100ms;
+}
+
+img{
+    height: 200px;
+    width: 200px;
+    border-radius: 4px;
+}
